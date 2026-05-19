@@ -1,122 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Editor</title>
+<meta charset="UTF-8">
+<title>GoAnimate Editor</title>
 
-    <script>
-        const flashvars = {
-            apiserver: "/",
-            storePath: "https://embraceoscar.github.io/GoAnimate-Assets/store/3a981f5cb2739137/<store>",
-            isEmbed: 1,
-            ctc: "go",
-            ut: 30,
-            bs: "default",
-            appCode: "go",
-            page: "",
-            siteId: "go",
-            lid: 13,
-            isLogin: "Y",
-            retut: 1,
-            clientThemePath: "https://embraceoscar.github.io/GoAnimate-Assets/static/ad44370a650793d9/<client_theme>",
-            themeId: "business",
-            tlang: "en_US",
-            presaveId: "m-1",
-            goteam_draft_only: 1,
-            isWide: 1,
-            nextUrl: "/html/list.html"
-        };
+<script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
 
-        const flashvarsString = new URLSearchParams(flashvars).toString();
-
-        const interactiveTutorial = {
-            neverDisplay() {
-                return true;
-            }
-        };
-
-        function studioLoaded(arg) {
-            console.log("Studio Loaded:", arg);
-        }
-
-        function initPreviewPlayer(xml) {
-            if (confirm("Before proceeding, please make sure all your changes have been saved.")) {
-                window.open(
-                    "player?movieId=" + flashvars.presaveId,
-                    "MsgWindow",
-                    `width=1280,height=720,left=${screen.width / 2 - 640},top=${screen.height / 2 - 360}`
-                );
-            }
-        }
-
-        function exitStudio() {
-            window.location = "/html/list.html";
-        }
-
-        function showImporter() {
-            document.getElementById("fileupload").click();
-        }
-
-        window.onload = () => {
-            const fu = document.getElementById("fileupload");
-
-            fu.addEventListener("change", () => {
-                if (fu.files.length > 0) {
-                    document.getElementById("uploadbanner").submit();
-                }
-            });
-        };
-    </script>
-
-    <style>
-        html, body {
-            margin: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background: #000;
-        }
-
-        #flash-container {
-            width: 100%;
-            height: 100%;
-        }
-    </style>
+<style>
+html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: black;
+}
+</style>
 </head>
 
 <body>
 
-    <div id="flash-container">
-        <object
-            id="obj"
-            data="https://embraceoscar.github.io/GoAnimate-Assets/animation/414827163ad4eb60/go_full.swf"
-            type="application/x-shockwave-flash"
-            width="100%"
-            height="100%"
-        >
-            <param name="flashvars" value="" id="flashvars-param">
-            <param name="allowScriptAccess" value="always">
-        </object>
-    </div>
+<div id="flash-container"></div>
 
-    <iframe style="display:none" name="dummy"></iframe>
+<script>
+window.RufflePlayer = window.RufflePlayer || {};
 
-    <form
-        style="display:none"
-        id="uploadbanner"
-        enctype="multipart/form-data"
-        method="post"
-        action="/upload_asset"
-        target="dummy"
-    >
-        <input id="fileupload" name="import" type="file">
-        <input type="submit" value="submit" id="submit">
-    </form>
+window.addEventListener("load", () => {
 
-    <script>
-        document.getElementById("flashvars-param").value = flashvarsString;
-    </script>
+    const ruffle = window.RufflePlayer.newest();
+
+    const player = ruffle.createPlayer();
+
+    player.style.width = "100%";
+    player.style.height = "100vh";
+
+    document.getElementById("flash-container").appendChild(player);
+
+    player.load({
+        url: "https://embraceoscar.github.io/GoAnimate-Assets/animation/414827163ad4eb60/go_full.swf"
+    });
+});
+</script>
 
 </body>
 </html>
