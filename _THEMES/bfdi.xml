@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<theme id="bfdi" name="BFDI">
+	<char id="flower_bfdi" name="Flower" thumb="" facing="left" default="standing.swf" motion="walk.swf" enable="Y" is_premium="N" aid="6492" money="0" sharing="0">
+		<category name="Emotion">
+			<action id="excited.swf" name="excited" loop="Y" totalframe="52" enable="Y" aid="6495"/>
+			<action id="furious.swf" name="Irritated" loop="Y" totalframe="29" enable="Y" aid="6496"/>
+			<action id="surprised.swf" name="surprised" loop="Y" totalframe="60" enable="Y" aid="6497"/>
+			<action id="impatient.swf" name="impatient" loop="Y" totalframe="100" enable="Y" aid="6498"/>
+			<action id="being_mad.swf" name="Being Mad" loop="Y" totalframe="52" enable="Y" aid="6495"/>
+			<action id="happy.swf" name="Happy" loop="Y" totalframe="2319" enable="Y" aid="6496"/>
+			<action id="angry_evil.swf" name="Evil" loop="Y" totalframe="60" enable="Y" aid="6497"/>
+			<action id="Sad_Noooooooooooooooooooooooo.swf" name="No!!!!!!!!" loop="Y" totalframe="100" enable="Y" aid="6498"/>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<theme id="assets" name="Your Assets">
+  </prop>
+  <prop id="boom.swf" name="Epic Boom" holdable="0" placeable="1" wearable="0" facing="left" thumb="" enable="Y" is_premium="N" aid="10901" money="0" sharing="0"/>
