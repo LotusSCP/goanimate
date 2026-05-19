@@ -22,8 +22,12 @@ html, body {
 <div id="container"></div>
 
 <script>
-window.RufflePlayer = window.RufflePlayer || {};
-
+window.RufflePlayer = window.RufflePlayer || {
+    config: {
+        allowScriptAccess: true,
+        polyfills: true
+    }
+};
 window.addEventListener("load", () => {
 
     const ruffle = window.RufflePlayer.newest();
