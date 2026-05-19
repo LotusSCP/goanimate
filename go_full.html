@@ -1,56 +1,122 @@
-<script>
-    document.title = 'Video Editor',
-    flashvars = {
-        "apiserver": "/",
-        "storePath": "https://embraceoscar.github.io/GoAnimate-Assets/store/3a981f5cb2739137/<store>",
-        "isEmbed": 1,
-        "ctc": "go",
-        "ut": 30,
-        "bs": "default",
-        "appCode": "go",
-        "page": "",
-        "siteId": "go",
-        "lid": 13,
-        "isLogin": "Y",
-        "retut": 1,
-        "clientThemePath": "https://embraceoscar.github.io/GoAnimate-Assets/static/ad44370a650793d9/<client_theme>",
-        "themeId": "business",
-        "tlang": "en_US",
-        "presaveId": "m-1",
-        "goteam_draft_only": 1,
-        "isWide": 1,
-        "nextUrl": "/html/list.html"
-    }
-</script>
-<body style="margin:0px">
-    <object id="obj" data="https://embraceoscar.github.io/GoAnimate-Assets/animation/414827163ad4eb60//go_full.swf" type="application/x-shockwave-flash" width="100%" height="100%">
-        <param name="flashvars" value="apiserver=%2F&storePath=https%3A%2F%2Fembraceoscar.github.io%2FGoAnimate-Assets%2Fstore%2F3a981f5cb2739137%2F%3Cstore%3E&isEmbed=1&ctc=go&ut=30&bs=default&appCode=go&page=&siteId=go&lid=13&isLogin=Y&retut=1&clientThemePath=https%3A%2F%2Fembraceoscar.github.io%2FGoAnimate-Assets%2Fstatic%2Fad44370a650793d9%2F%3Cclient_theme%3E&themeId=business&tlang=en_US&presaveId=m-1&goteam_draft_only=1&isWide=1&nextUrl=%2Fhtml%2Flist.html">
-        <param name="allowScriptAccess" value="always">
-    </object>
-</body>
-<iframe style='display:none' name='dummy'></iframe>
-<form style='display:none' id='uploadbanner' enctype='multipart/form-data' method='post' action='/upload_asset' target='dummy' onchanged='(this.files[0]!=undefined)&&sub.click()'>
-    <input id='fileupload' name='import' type='file'/>
-    <input type='submit' value='submit' id='submit'/>
-</form>
-<script>
-    interactiveTutorial = {
-        neverDisplay: function() {
-            return true
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Editor</title>
+
+    <script>
+        const flashvars = {
+            apiserver: "/",
+            storePath: "https://embraceoscar.github.io/GoAnimate-Assets/store/3a981f5cb2739137/<store>",
+            isEmbed: 1,
+            ctc: "go",
+            ut: 30,
+            bs: "default",
+            appCode: "go",
+            page: "",
+            siteId: "go",
+            lid: 13,
+            isLogin: "Y",
+            retut: 1,
+            clientThemePath: "https://embraceoscar.github.io/GoAnimate-Assets/static/ad44370a650793d9/<client_theme>",
+            themeId: "business",
+            tlang: "en_US",
+            presaveId: "m-1",
+            goteam_draft_only: 1,
+            isWide: 1,
+            nextUrl: "/html/list.html"
+        };
+
+        const flashvarsString = new URLSearchParams(flashvars).toString();
+
+        const interactiveTutorial = {
+            neverDisplay() {
+                return true;
+            }
+        };
+
+        function studioLoaded(arg) {
+            console.log("Studio Loaded:", arg);
         }
-    };
-    function studioLoaded(arg) {
-        console.log(arg)
-    }
-    function initPreviewPlayer(xml) {
-        confirm('Before proceeding, please make sure all your changes have been saved.') && window.open('player?movieId=' + flashvars.presaveId, 'MsgWindow', 'width=1280,height=720,left=' + (screen.width / 2 - 640) + ',top=' + (screen.height / 2 - 360))
-    }
-    ;function exitStudio() {
-        window.location = '/html/list.html'
-    }
-    const fu = document.getElementById('fileupload')
-      , sub = document.getElementById('submit');
-    function showImporter() {
-        fu.click()
-    }
-    ;</script>
+
+        function initPreviewPlayer(xml) {
+            if (confirm("Before proceeding, please make sure all your changes have been saved.")) {
+                window.open(
+                    "player?movieId=" + flashvars.presaveId,
+                    "MsgWindow",
+                    `width=1280,height=720,left=${screen.width / 2 - 640},top=${screen.height / 2 - 360}`
+                );
+            }
+        }
+
+        function exitStudio() {
+            window.location = "/html/list.html";
+        }
+
+        function showImporter() {
+            document.getElementById("fileupload").click();
+        }
+
+        window.onload = () => {
+            const fu = document.getElementById("fileupload");
+
+            fu.addEventListener("change", () => {
+                if (fu.files.length > 0) {
+                    document.getElementById("uploadbanner").submit();
+                }
+            });
+        };
+    </script>
+
+    <style>
+        html, body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #000;
+        }
+
+        #flash-container {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="flash-container">
+        <object
+            id="obj"
+            data="https://embraceoscar.github.io/GoAnimate-Assets/animation/414827163ad4eb60/go_full.swf"
+            type="application/x-shockwave-flash"
+            width="100%"
+            height="100%"
+        >
+            <param name="flashvars" value="" id="flashvars-param">
+            <param name="allowScriptAccess" value="always">
+        </object>
+    </div>
+
+    <iframe style="display:none" name="dummy"></iframe>
+
+    <form
+        style="display:none"
+        id="uploadbanner"
+        enctype="multipart/form-data"
+        method="post"
+        action="/upload_asset"
+        target="dummy"
+    >
+        <input id="fileupload" name="import" type="file">
+        <input type="submit" value="submit" id="submit">
+    </form>
+
+    <script>
+        document.getElementById("flashvars-param").value = flashvarsString;
+    </script>
+
+</body>
+</html>
